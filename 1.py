@@ -3,11 +3,12 @@ import random
 class NotImplementedException(Exception):
     ...
 
+class ValueException(Exception):
+    ...
+
 print("Вечер добрый, напарник!")
 
 enter = input("Готов ограбить этот банк и стать самым богатым (да/нет)?")
-
-#print('да' == enter)
 
 if 'да' == enter:
     print("Давай сделаем это!")
@@ -25,6 +26,9 @@ try:
             print("Хорошо, там как раз должно быть открыто, за дверью стоит сейф!")
 
             s = input("Какой код от сейфа (1-20)?")
+
+            if not s.isdigit():
+                raise ValueException('Нужно было ввести число!')
 
             s = int(s)
 
@@ -44,7 +48,11 @@ try:
       raise NotImplementedException("Разбивать окно будет громко!")
     elif '3' == choose:
       raise NotImplementedException("Вентиляционная система не выходит к комнате с сейфом!")
+
 except NotImplementedException as err:
     print(f'Не работает: {err}')
+
+except ValueException as err:
+    print(f'Нет, всё-таки нужно число!А вы ввели "{s}", получено исключение: {err}')
 
 print('Бежим!')
