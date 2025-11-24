@@ -1,5 +1,8 @@
 import random
 
+class NotImplementedException(Exception):
+    ...
+
 print("Вечер добрый, напарник!")
 
 enter = input("Готов ограбить этот банк и стать самым богатым (да/нет)?")
@@ -14,33 +17,34 @@ elif 'нет' == enter:
 
 choose = input("Как попадем в здание банка: через запасной вход (1), через окно (2), через вентиляцию (3)")
 
-if '1' == choose:
+try:
+    if '1' == choose:
 
-    while True:
+        while True:
 
-        print("Хорошо, там как раз должно быть открыто, за дверью стоит сейф!")
+            print("Хорошо, там как раз должно быть открыто, за дверью стоит сейф!")
 
-        s = input("Какой код от сейфа (1-20)?")
+            s = input("Какой код от сейфа (1-20)?")
 
-        s = int(s)
+            s = int(s)
 
-        win = random.randint(1, 20)
+            win = random.randint(1, 20)
 
-        if s == win:
-           print("Удача, деньги у вас в кармане!")
-        else:
-           print(f"Сейф не открылся,код {win},сработала сигнализация!")
+            if s == win:
+               print("Удача, деньги у вас в кармане!")
+            else:
+               print(f"Сейф не открылся,код {win},сработала сигнализация!")
 
-        repeat = input('Повторите попытку? (да/нет)')
+            repeat = input('Повторите попытку? (да/нет)')
 
-        if repeat.strip().lower() == 'нет':
-            break
+            if repeat.strip().lower() == 'нет':
+               break
 
-
-elif '2' == choose:
-    print("Разбивать окно будет громко!")
-
-elif '3' == choose:
-    print("Вентиляционная система не выходит к комнате с сейфом!")
+    elif '2' == choose:
+      raise NotImplementedException("Разбивать окно будет громко!")
+    elif '3' == choose:
+      raise NotImplementedException("Вентиляционная система не выходит к комнате с сейфом!")
+except NotImplementedException as err:
+    print(f'Не работает: {err}')
 
 print('Бежим!')
