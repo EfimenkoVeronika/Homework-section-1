@@ -3,10 +3,6 @@ import random
 class NotImplementedException(Exception):
     ...
 
-class ValueException(Exception):
-    ...
-
-
 def hacking():
 
     while True:
@@ -15,8 +11,9 @@ def hacking():
 
         s = input("Какой код от сейфа (1-20)?")
 
-        if not s.isdigit():
-            raise ValueException('Нужно было ввести число!')
+            #if not s.isdigit():
+            #print('Нужно было ввести число!')
+             #continue
 
         s = int(s)
 
@@ -28,7 +25,6 @@ def hacking():
             print(f"Сейф не открылся,код {win},сработала сигнализация!")
 
         repeat = input('Повторите попытку? (да/нет)')
-
         if repeat.strip().lower() == 'нет':
             break
 
@@ -41,6 +37,8 @@ def ventilation():
 print("Вечер добрый, напарник!")
 
 enter = input("Готов ограбить этот банк и стать самым богатым (да/нет)?")
+
+#print('да' == enter)
 
 if 'да' == enter:
     print("Давай сделаем это!")
@@ -59,9 +57,6 @@ try:
         ventilation()
 
 except NotImplementedException as err:
-    print(f'Не работает: {err}')
-
-except ValueException as err:
-    print(f'Нет, всё-таки нужно число!А вы ввели "{s}", получено исключение: {err}')
+    print(f'Не сработало: {err}')
 
 print('Бежим!')
